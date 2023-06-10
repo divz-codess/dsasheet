@@ -1,16 +1,17 @@
 class Solution {
 public:
     int pivotIndex(vector<int>& nums) {
-        
-        int s=0, ls=0;
+     int ls=0, s=0;
+    for(int i=0;i<nums.size();i++){
+        s+=nums[i];
+    }
         for(int i=0;i<nums.size();i++){
-            s+=nums[i];
-        }
-        for(int i=0;i<nums.size();i++){
-            s=s-nums[i];
-            if(s==ls) return i;
-            ls=ls+nums[i];
+            s-=nums[i];
+            if(ls==s) return i;
+            ls+=nums[i];
         }
         return -1;
+        //TC= O(n)
+        //SC= O(1)
     }
 };
