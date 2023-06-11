@@ -1,11 +1,11 @@
 class Solution {
 public:
     vector<int> sortedSquares(vector<int>& nums) {
-        vector<int> ans;
+        vector<int> arr;
         for(int i=0;i<nums.size();i++){
-            ans.push_back(nums[i]*nums[i]);
+            arr.push_back(nums[i]*nums[i]);
         }
-        sort(ans.begin(),ans.end());
-        return ans;
+        sort(arr.begin(),arr.end());
+        return arr;
     }
 };
