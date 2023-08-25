@@ -1,8 +1,8 @@
 class Solution {
 public:
-    vector<int> row(int n){
-        vector<int> res;
+    vector<int> rows(int n){
         int ans=1;
+        vector<int> res;
         res.push_back(ans);
         for(int i=1;i<n;i++){
             ans=ans*(n-i);
@@ -12,10 +12,10 @@ public:
         return res;
     }
     vector<vector<int>> generate(int numRows) {
-         vector<vector<int>> ans;
+        vector<vector<int>> result;
         for(int i=1;i<=numRows;i++){
-            ans.push_back(row(i));
+            result.push_back(rows(i));
         }
-        return ans;
+        return result;
     }
 };
