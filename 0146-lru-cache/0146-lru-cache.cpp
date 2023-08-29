@@ -5,6 +5,7 @@ public:
     list<int> l;
     int cap;
     int siz;
+    
     LRUCache(int capacity) {
         cap=capacity;
         siz=0;
@@ -12,9 +13,7 @@ public:
     
     int get(int key) {
         if(m.find(key)==m.end()) return -1;
-        list<int>::iterator it;
-        it=address[key];
-        l.erase(it);
+        l.erase(address[key]);
         address.erase(key);
         l.push_front(key);
         address[key]=l.begin();
