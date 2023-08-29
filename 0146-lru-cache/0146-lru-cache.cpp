@@ -1,6 +1,6 @@
 class LRUCache {
 public:
-    map<int, list<pair<int, int>>::iterator> m; // key and address stored in it
+    unordered_map<int, list<pair<int, int>>::iterator> m; // key and address stored in it
     list<pair<int, int>> l; // key and value stored in it
     int cap;
     int siz;
