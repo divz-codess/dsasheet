@@ -1,48 +1,38 @@
 class LRUCache {
 public:
-    map<int,int> m;
-    map<int,list<int>::iterator> address;
-    list<int> l;
+    map<int, list<pair<int, int>>::iterator> m; // key and address stored in it
+    list<pair<int, int>> l; // key and value stored in it
     int cap;
     int siz;
     
     LRUCache(int capacity) {
-        cap=capacity;
-        siz=0;
+        cap = capacity;
+        siz = 0;
     }
     
     int get(int key) {
-        if(m.find(key)==m.end()) return -1;
-        l.erase(address[key]);
-        address.erase(key);
-        l.push_front(key);
-        address[key]=l.begin();
-        return m[key];
+        if(m.find(key) == m.end()) return -1;
+        pair<int, int> pp = *(m[key]);
+        l.erase(m[key]);
+        l.push_front(pp);
+        m[key] = l.begin();
+        return pp.second;
     }
     
     void put(int key, int value) {
-        if(m.find(key)!=m.end()){
-            l.erase(address[key]);
+        if(m.find(key) != m.end()){
+            l.erase(m[key]);
             m.erase(key);
             siz--;
         }
-        if(siz==cap){
-            int k=l.back();
+        if(siz == cap){
+            int k = l.back().first;
             l.pop_back();
-            address.erase(k);
             m.erase(k);
             siz--;
         }
         siz++;
-        l.push_front(key);
-        address[key]=l.begin();
-        m[key]=value;
+        l.push_front({key, value});
+        m[key] = l.begin();
     }
 };
-
-/**
- * Your LRUCache object will be instantiated and called as such:
- * LRUCache* obj = new LRUCache(capacity);
- * int param_1 = obj->get(key);
- * obj->put(key,value);
- */
