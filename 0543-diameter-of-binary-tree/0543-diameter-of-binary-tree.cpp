@@ -22,8 +22,8 @@ public:
         int lh=diameterz(root->left,diameter);
         int rh=diameterz(root->right,diameter);
         
-        diameter=max(diameter,lh+rh);
+        diameter=max(diameter,lh+rh);//updating diameter if a longer path is found
         
-        return 1+max(lh,rh);
+        return 1+max(lh,rh);//current subtree ki height
     }
 };
