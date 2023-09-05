@@ -25,12 +25,10 @@ public:
                 q.pop();
                 int index=ltor?i:size-1-i;
                 level[index]=nnode->val;
-                if(nnode->left!=NULL){
+                if(nnode->left!=NULL)
                     q.push(nnode->left);
-                }
-                if(nnode->right!=NULL){
+                if(nnode->right!=NULL)
                     q.push(nnode->right);
-                }
             }
             ltor=!ltor;
             ans.push_back(level);
