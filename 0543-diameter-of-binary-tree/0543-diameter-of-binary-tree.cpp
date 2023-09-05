@@ -12,18 +12,18 @@
 class Solution {
 public:
     int diameterOfBinaryTree(TreeNode* root) {
-        int diameter=0;
-        diameterz(root,diameter);
-        return diameter;
+        int dia=0;
+        calculate(root,dia);
+        return dia;
     }
-    int diameterz(TreeNode* root,int &diameter){
+    int calculate(TreeNode* root, int &dia){
         if(root==NULL) return 0;
         
-        int lh=diameterz(root->left,diameter);
-        int rh=diameterz(root->right,diameter);
+        int ld=calculate(root->left,dia);
+        int rd=calculate(root->right,dia);
         
-        diameter=max(diameter,lh+rh);//updating diameter if a longer path is found
+        dia=max(dia,ld+rd);
         
-        return 1+max(lh,rh);//current subtree ki height
+        return 1+max(ld,rd);
     }
 };
