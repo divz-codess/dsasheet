@@ -1,21 +1,15 @@
 class Solution {
 public:
     vector<int> intersect(vector<int>& nums1, vector<int>& nums2) {
-        vector<pair<int,int>> pp;
+        map<int,int> m;
         vector<int> ans;
-        for(int &i: nums1){
-            pp.push_back({i,0});
+        for(int & i: nums1){
+            m[i]++;
         }
-        
-        for(int &j: nums2){
-            bool flag=true;
-            for(auto &i: pp)
-            {
-                if(i.first==j && i.second==0 && flag){
-                    ans.push_back(j);
-                    i.second=1;
-                    flag=!flag;
-                }
+        for(int &i: nums2){
+            if(m[i]>0){
+                ans.push_back(i);
+                m[i]--;
             }
         }
         return ans;
