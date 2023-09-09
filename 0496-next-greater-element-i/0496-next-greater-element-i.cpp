@@ -7,8 +7,9 @@ public:
             for(int j=nums2.size()-1;j>=0;j--){
                 if(nums1[i]==nums2[j]){
                     if(s.empty()) ans.push_back(-1);
-                    else if(!s.empty() && s.top()>nums2[j])
+                    else if(!s.empty() && s.top()>nums2[j]){
                         ans.push_back(s.top());
+                    }
                     else if(!s.empty() && s.top()<=nums2[j]){
                         while(!s.empty() && s.top()<=nums2[j]){
                             s.pop();
@@ -20,7 +21,6 @@ public:
                 s.push(nums2[j]);
             }
         }
-      //  reverse(ans.begin(),ans.end());
         return ans;
     }
 };
