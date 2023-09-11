@@ -11,15 +11,16 @@
  */
 class Solution {
 public:
-    // if && isBalanced(root->right) && isBalanced(root->left) part is not added then it will not check if       //   the subtrees are balanced or not which is necessary to be checked
-    int height(TreeNode* root){
-        if(root==NULL) return 0;
-        return 1+max(height(root->left),height(root->right));
-    }
     bool isBalanced(TreeNode* root) {
-        if(root==NULL) return true;
-        if(abs(height(root->left)-height(root->right))<=1 && isBalanced(root->right) && isBalanced(root->left)) 
-            return true;
-        return false;
+        return height(root)!=-1;
+    }
+    int height(TreeNode *root){
+        if(root==NULL) return 0;
+        int lh=height(root->left);
+        if(lh==-1) return -1;
+        int rh=height(root->right);
+        if(rh==-1) return -1;
+        if(abs(lh-rh)>1) return -1;
+        return 1+max(lh,rh);
     }
 };
