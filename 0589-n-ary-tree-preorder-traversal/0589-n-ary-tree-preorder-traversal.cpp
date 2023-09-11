@@ -20,12 +20,18 @@ public:
 
 class Solution {
 public:
-    vector<int> ans;
     vector<int> preorder(Node* root) {
+        vector<int> ans;
         if(root==NULL) return ans;
-        ans.push_back(root->val);
-        for(auto i: root->children){
-            preorder(i);
+        stack<Node*> s;
+        s.push(root);
+        while(!s.empty()){
+            Node *i=s.top();
+            s.pop();
+            ans.push_back(i->val);
+            for(int it=i->children.size()-1;it>=0;it--){
+                s.push(i->children[it]);
+            }
         }
         return ans;
     }
