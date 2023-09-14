@@ -2,18 +2,18 @@ class Solution {
 public:
     vector<vector<int>> permute(vector<int>& nums) {
         vector<vector<int>> res;
-        return perm(nums,0,nums.size()-1,res);
-    }
-    vector<vector<int>> perm(vector<int> nums,int l,int r,vector<vector<int>> &res){
-        if(l==r){
-            res.push_back(nums);
-            return res;
-        }
-        for(int i=l;i<=r;i++){
-            swap(nums[i],nums[l]);
-            perm(nums,l+1,r,res);
-            swap(nums[i],nums[l]);
-        }
+        permutation(nums,0,res);
         return res;
+    }
+    void permutation(vector<int> &nums,int begin,vector<vector<int>> &res){
+        if(begin>=nums.size()){
+            res.push_back(nums);
+            return;
+        }
+        for(int i=begin;i<nums.size();i++){
+            swap(nums[i],nums[begin]);
+            permutation(nums,begin+1,res);
+            swap(nums[i],nums[begin]);
+        }
     }
 };
