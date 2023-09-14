@@ -20,11 +20,12 @@ public:
         
         if(l==1 && n==1) 
         { return NULL;}
+        
         l=l-n;
         
-        if(l==0){
-            ListNode* temp2=head->next;
-            return temp2;
+        if(l==0)//1st node has to be deleted
+        {
+            return head->next;
         }
         
         
