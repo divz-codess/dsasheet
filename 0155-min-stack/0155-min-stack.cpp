@@ -4,39 +4,36 @@ public:
         
     }
     stack<int> s;
-    stack<int> ss;
+    stack<int> ms;
     
     void push(int val) {
         if(s.size()==0){
             s.push(val);
-            ss.push(val);
+            ms.push(val);
         }
-        else if(val<=ss.top()){
-            s.push(val);
-            ss.push(val);
-        }
-        else if(val>ss.top()){
+        else if(val<=ms.top()){
+            ms.push(val);
             s.push(val);
         }
-            
+        else if(val>ms.top()){
+            s.push(val);
+        }
     }
     
     void pop() {
-        int ans=s.top();
-        s.pop();
-        if(ans==ss.top()){
-            ss.pop();
+        if(ms.top()==s.top()){
+            ms.pop();
+            s.pop();
         }
+        else s.pop();
     }
     
     int top() {
-       // if(s.size()==0) return -1;
         return s.top();
     }
     
     int getMin() {
-        //if(s.size()==0) return -1;
-        return ss.top();
+        return ms.top();
     }
 };
 
