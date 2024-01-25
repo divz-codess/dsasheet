@@ -22,6 +22,8 @@ public:
             else
             {nh=nh->next;}
         }
-        return dummy->next;
+        return dummy->next; //this ensures that if the first node is the one that needs to be deleted
+        // still the output is correct, but if we will simply return head, it will just lead to 
+        // pointing to the deleted linked list node
     }
 };
