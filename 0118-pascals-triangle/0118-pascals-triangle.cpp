@@ -1,21 +1,14 @@
 class Solution {
 public:
-    vector<int> rows(int n){
-        int ans=1;
-        vector<int> res;
-        res.push_back(ans);
-        for(int i=1;i<n;i++){
-            ans=ans*(n-i);
-            ans=ans/i;
-            res.push_back(ans);
-        }
-        return res;
-    }
     vector<vector<int>> generate(int numRows) {
-        vector<vector<int>> result;
-        for(int i=1;i<=numRows;i++){
-            result.push_back(rows(i));
+        vector<vector<int>> ans;
+        for(int i=0;i<numRows;i++){
+            vector<int> row(i+1,1);
+            for(int j=1;j<i;j++){
+                row[j]=ans[i-1][j-1]+ ans[i-1][j];
+            }
+            ans.push_back(row);
         }
-        return result;
+        return ans;
     }
 };
