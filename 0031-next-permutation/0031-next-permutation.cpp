@@ -6,22 +6,23 @@ public:
         
         for(int i=n-2;i>=0;i--){
             if(nums[i]<nums[i+1]){
-                ind = i;
+                ind=i;
                 break;
             }
         }
-        if(ind == -1){
+        if(ind ==-1){
             reverse(nums.begin(),nums.end());
             return;
         }
         
         for(int i=n-1;i>=ind;i--){
-            if(nums[i]>nums[ind]){
+            if(nums[i]>nums[ind]){         //nums[ind] se greater element se swap krna h
                 swap(nums[i],nums[ind]);
                 break;
             }
         }
-        reverse(nums.begin()+1+ind,nums.end());
-        return;
+        
+        reverse(nums.begin()+ind+1,nums.end());
+        
     }
 };
