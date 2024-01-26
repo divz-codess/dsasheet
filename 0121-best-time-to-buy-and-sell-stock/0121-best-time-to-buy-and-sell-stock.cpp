@@ -1,25 +1,19 @@
 class Solution {
 public:
-    /*
-    ALGO:
-    1. Take a minval variable and initialize it to INT_MAX.
-    2. Now keep finding the minimum price at which we can sell
-    3. Also keep finding profit if we sell it today
-    4. And store maximum profit thst can be generated at all times by storing it in overallpr variable
-    */
     int maxProfit(vector<int>& prices) {
-        int leastvalue=INT_MAX;
-        int pr=0;
-        int ovpr=0;
+        int min_cp=INT_MAX;
+        int curr_pr=0, max_pr=0;
+        
         for(int i=0;i<prices.size();i++){
-            if(prices[i]<leastvalue){
-                leastvalue=prices[i];
+            if(prices[i]<min_cp){
+                min_cp=prices[i];
             }
-            pr=prices[i]-leastvalue;
-            if(ovpr<pr){
-                ovpr=pr;
+            curr_pr=prices[i]-min_cp;
+            if(max_pr<curr_pr){     // if I donot initialize max_pr and curr_pr how will I compare
+                // them in the first instance
+                max_pr=curr_pr;
             }
         }
-        return ovpr;
+        return max_pr;
     }
 };
