@@ -1,13 +1,21 @@
 class Solution {
 public:
+    
+    
+    // ***** MOORE VOTING ALGORITHM *****
+    
+    
     int majorityElement(vector<int>& nums) {
-        unordered_map<int,int> mp;
-        for(int i: nums){
-            mp[i]++;
-            if((mp[i])>(nums.size()/2)){
-                return i;
+        int majorityIndex=0;
+        int count=1;
+        for(int i=1;i<nums.size();i++){
+            nums[majorityIndex]==nums[i]?count++:count--;
+            if(count==0){
+                majorityIndex=i;
+                count=1;
             }
         }
-        return -1;
+        
+        return nums[majorityIndex];
     }
 };
