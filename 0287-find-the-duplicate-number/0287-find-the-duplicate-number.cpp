@@ -12,16 +12,7 @@ public:
             
         }
     }
-    // 
-    //    int dup=0;
-    // for(int i=0;i<A.size();i++){
-    //     if(A[i]!=i+1){
-    //         mis=i+1;
-    //         dup=A[i];
-    //     }
-    // }
-    
-    
+    // x stores the last index where the value of A[i] != A[A[i]-1] 
     return A[x];
     }
 };
