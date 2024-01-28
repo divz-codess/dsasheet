@@ -11,21 +11,18 @@ public:
         int k=0;
         while(top<=bottom && left<=bottom){
             for(int i=left;i<=right;i++){
-                k++;
-                ans[top][i]=k;
+                ans[top][i]=++k;
             }
             top++;
-            // if(k==(n*n)) break;
+            
             for(int i=top;i<=bottom;i++){
-                k++;
-                ans[i][right]=k;
+                ans[i][right]=++k;
             }
             right--;
-            //if(k==(n*n)) break;
+            
             if(left<=right){
                 for(int i=right;i>=left;i--){
-                    k++;
-                    ans[bottom][i]=k;
+                    ans[bottom][i]=++k;
                 }
                 bottom--;
             }
