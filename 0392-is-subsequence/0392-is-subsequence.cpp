@@ -3,7 +3,7 @@ public:
     bool isSubsequence(string s, string t) {
         int m=s.length();
         int n=t.length();
-        if(n<m) return false;
+        
         int res=0;
         vector<vector<int>> dp(m+1, vector<int>(n+1, 0));
         for(int i=1;i<m+1;i++){
@@ -17,9 +17,6 @@ public:
                 }
             }
         }
-        cout<<m<<endl;
-        cout<<n<<endl;
-        cout<<res<<endl;
-        return (m==res||n==res);
+        return (m==res);
     }
 };
