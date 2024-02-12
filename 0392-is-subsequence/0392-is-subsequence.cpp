@@ -1,14 +1,25 @@
 class Solution {
 public:
     bool isSubsequence(string s, string t) {
-        int n=s.size();
-        int x=0;
-        for(char c:t){
-            if(s[x]==c){
-                x++;
+        int m=s.length();
+        int n=t.length();
+        if(n<m) return false;
+        int res=0;
+        vector<vector<int>> dp(m+1, vector<int>(n+1, 0));
+        for(int i=1;i<m+1;i++){
+            for(int j=1;j<n+1;j++){
+                if(s[i-1]==t[j-1]){
+                    dp[i][j]= 1 + dp[i-1][j-1];
+                    res=max(res, dp[i][j]);
+                }
+                else{
+                    dp[i][j]=max( dp[i-1][j], dp[i][j-1]);
+                }
             }
-            if(x==n) break;
         }
-        return x==n;
+        cout<<m<<endl;
+        cout<<n<<endl;
+        cout<<res<<endl;
+        return (m==res||n==res);
     }
 };
