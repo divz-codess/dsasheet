@@ -6,6 +6,8 @@ public:
         vector<int> nums2(s.begin(), s.end());
         int m=nums2.size();
         
+        
+        // LCS on array and ordered set of that same array
         vector<vector<int>> t(n+1, vector<int>(m+1, 0));
         int res=0;
         for(int i=1;i<n+1;i++){
