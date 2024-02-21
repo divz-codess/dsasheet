@@ -1,22 +1,33 @@
 class Solution {
 public:
-    void dfs(int n, vector<vector<int>> &grid, vector<int> &vis){
+    void dfs(int n, vector<int> adj[], vector<int> &vis){
         vis[n]=1;
-        
-            for(int i=0;i<grid.size();i++){
-                if(grid[n][i]==1 && vis[i]==0){
-                    dfs(i,grid,vis);
-                }
+        for(int i: adj[n]){
+            if(vis[i]==0){
+                dfs(i,adj,vis);
             }
+        }
     }
     int findCircleNum(vector<vector<int>>& grid) {
-        vector<int> vis(grid.size()+1,0);
+        int n=grid.size();
+        int m=grid[0].size();
+        vector<int> vis(n+1,0);
+        
+        vector<int> adj[n];
+        for(int i=0;i<n;i++){
+            for(int j=0;j<m;j++){
+                if(grid[i][j]==1){
+                    adj[i].push_back(j);
+                    adj[j].push_back(i);
+                }
+            }
+        }
         int count=0;
         
-        for(int i=0;i<grid.size();i++){
+        for(int i=0;i<n;i++){
             if(vis[i]==0){
                 count++;
-                dfs(i,grid,vis);
+                dfs(i,adj,vis);
             }
         }
         return count;
