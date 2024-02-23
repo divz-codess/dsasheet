@@ -1,7 +1,6 @@
 class Solution {
 public:
     bool check(int start, vector<vector<int>>& graph, vector<int>& color){
-        
         queue<int> q;
         q.push(start);
         
@@ -23,7 +22,6 @@ public:
     }
     bool isBipartite(vector<vector<int>>& graph) {
         int n=graph.size();
-        int m=graph[0].size();
         
         vector<int> color(n,-1);
         
