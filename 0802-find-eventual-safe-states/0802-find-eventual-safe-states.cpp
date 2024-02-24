@@ -1,44 +1,39 @@
 class Solution {
 public:
-    bool dfs(int node, vector<int> &vis, vector<int> &pathvis, vector<int> &check,vector<vector<int>>& graph){
-        vis[node]=1;
-        pathvis[node]=1;
-        check[node]=0; // ye safe node nhi h till we reach end of this function
-        for(int i: graph[node]){
-            if(vis[i]==0){
-                // agar cycle mil gyi to ye safe node nhi hoga
-                if(dfs(i,vis,pathvis,check,graph)==true){
-                    check[node]=0;
-                    return true;
+    vector<int> eventualSafeNodes(vector<vector<int>>& adj) {
+        int V=adj.size();
+        vector<int> indegree(V,0);
+        vector<int> adj1[V];
+        for(int i=0;i<V;i++){
+            for(int it: adj[i]){
+                adj1[it].push_back(i);
+            }
+        }
+        for(int i=0;i<V;i++){
+            for(int it: adj1[i]){
+                indegree[it]++;
+            }
+        }
+        queue<int> q;
+        for(int i=0;i<V;i++){
+            if(indegree[i]==0){
+                q.push(i);
+            }
+        }
+        vector<int> vec;
+        while(!q.empty()){
+            int node=q.front();
+            q.pop();
+            vec.push_back(node);
+            
+            for(int it: adj1[node]){
+                indegree[it]--;
+                if(indegree[it]==0){
+                    q.push(it);
                 }
             }
-            else if(pathvis[i]==1) // vis bhi h and pathvis bhi h so cycle h 100% so not a safe node
-            {
-                check[node]=0;
-                return true;
-            }
         }
-        check[node]=1;
-        pathvis[node]=0;
-        return false;
-    }
-    vector<int> eventualSafeNodes(vector<vector<int>>& graph) {
-        int n=graph.size();
-        vector<int> vis(n,0);
-        vector<int> pathvis(n,0);
-        vector<int> check(n,0);
-        
-        for(int i=0;i<n;i++){
-            if(vis[i]==0){
-                dfs(i, vis, pathvis, check, graph);
-            }
-        }
-        vector<int> ans;
-        for(int i=0;i<n;i++){
-            if(check[i]==1){
-                ans.push_back(i);
-            }
-        }
-        return ans;
+        sort(vec.begin(),vec.end());
+        return vec;
     }
 };
