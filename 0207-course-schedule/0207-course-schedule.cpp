@@ -6,7 +6,7 @@ public:
         for(auto i: prereq){
             int a= i[0];
             int b= i[1];
-            adj[a].push_back(b);
+            adj[b].push_back(a);
         }
         for(int i=0;i<N;i++){
             for(int it: adj[i]){
